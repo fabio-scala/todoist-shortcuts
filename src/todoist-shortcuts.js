@@ -50,7 +50,7 @@
 
     // Selection
     ['x', toggleSelect],
-    ['* a', selectAllTasks],
+    ['meta+a', selectAllTasks],
     ['* n', deselectAllTasks],
     ['* o', selectAllOverdue],
     ['* 1', selectPriority('1')],
@@ -61,13 +61,13 @@
     [['* l', '* right'], expandAll],
 
     // Manipulation of selected tasks
-    ['t', schedule],
-    ['shift+t', scheduleText],
-    ['d', done],
+    ['s', schedule],
+    ['d', scheduleText],
+    ['c', done],
     [['e', '#'], deleteTasks],
     ['&', duplicateTasks],
-    ['v', moveToProject],
-    [['y', '@'], openLabelMenu],
+    ['m', moveToProject],
+    [['l', '@'], openLabelMenu],
     ['1', setPriority('1')],
     ['2', setPriority('2')],
     ['3', setPriority('3')],
@@ -75,25 +75,25 @@
     ['shift+c', toggleTimer],
 
     // Sorting
-    ['s', sortByDate],
+    //['s', sortByDate],
     // (see originalHandler) ['p', sortByPriority],
     // (see originalHandler) ['n', sortByName],
     // (see originalHandler) ['r', sortByAssignee],
 
     // Bulk reschedule / move mode
-    ['* t', bulkSchedule],
-    ['* v', bulkMove],
+    ['* s', bulkSchedule],
+    ['* m', bulkMove],
 
     // Other
 
     // TODO: Once #67 is resolved, the definition of undo() should be
     // reverted to what it was, and the binding for 'u' should not be
     // overridden here.
-    [['u', 'z', 'ctrl+z'], undo],
+    [['u', 'z', 'meta+z'], undo],
 
     // (see originalHandler) [['f', '/'], focusSearch],
     ['?', openHelpModal],
-    ['ctrl+s', sync],
+    ['meta+s', sync],
 
     // See https://github.com/mgsloan/todoist-shortcuts/issues/30
     // [???, importFromTemplate],
@@ -113,7 +113,7 @@
 
   // Scheduling keybindings (used when scheduler is open)
   const SCHEDULE_BINDINGS = [].concat(SCHEDULE_CURSOR_BINDINGS, [
-    ['c', scheduleToday],
+    ['n', scheduleToday],
     ['t', scheduleTomorrow],
     ['w', scheduleNextWeek],
     ['m', scheduleNextMonth],
@@ -146,16 +146,16 @@
   const SMART_SCHEDULER_KEYMAP = 'smart_scheduler';
 
   const TASK_VIEW_BINDINGS = [
-    ['d', taskViewDone],
+    ['c', taskViewDone],
     [['i', 'escape'], taskViewClose],
     ['s', taskViewSubtasks],
-    ['c', taskViewComments],
+    //['c', taskViewComments],
     ['h', taskViewParent],
     ['shift+h', taskViewActivity],
     // TODO(#94): proper bindings for o / O.
     [['q', 'a', 'A', 'o', 'O'], taskViewAddSubtask],
-    ['t', taskViewSchedule],
-    ['shift+t', taskViewScheduleText],
+    ['s', taskViewSchedule],
+    ['d', taskViewScheduleText],
     ['+', taskViewOpenAssign],
     ['v', taskViewMoveToProject],
     [['y', '@'], taskViewLabel],
@@ -1161,7 +1161,7 @@
         'a', '',
         text('Printable shortcuts guide (displayed below)'),
     );
-    sheetsLink.setAttribute('href', 'https://docs.google.com/spreadsheets/d/1AGh85HlDze19bWpCa2OTErv9xc7grmMOMRV9S2OS7Xk');
+    sheetsLink.setAttribute('href', 'https://docs.google.com/spreadsheets/d/1xHmVnM_Xwsbj4UfeaByk-CncYdHuvYUU5SzGCpVZIxg');
     const linksList = element(
         'ul', '',
         element('li', '', docsLink),
@@ -1169,7 +1169,7 @@
         element('li', '', sheetsLink),
     );
     const iframe = element('iframe');
-    iframe.setAttribute('src', 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5jkiI07g9XoeORQrOQUlAwY4uqJkBDkm-zMUK4WuaFvca0BJ0wPKEM5dw6RgKtcSN33PsZPKiN4G4/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false');
+    iframe.setAttribute('src', 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTN2FOeBerqHSFkpk56oXlOsmZp6xCnh2ed1kez7svRf_jwNYVpEcqRxIaubxq0UeZTzz3Al7u8rbZf/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false');
     iframe.setAttribute('scrolling', 'no');
     const container = div(TODOIST_SHORTCUTS_HELP_CONTAINER, linksList, iframe);
     const modal = createModal(div('', header, container));
